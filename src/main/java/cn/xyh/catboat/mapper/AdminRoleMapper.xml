@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.xyh.catboat.mapper.AdminRoleMapper" >
+    <select id="findNotAddResource" resultType="adminPerssion" parameterType="int">
+      select perssion_id,perssion_name,perssion_url from admin_perssion where perssion_id not in(select perssion_id from perssion_role where role_id = #{roleId});
+    </select>
+
+    <select id="findResourcesByRoleId" resultType="adminPerssion" parameterType="int">
+        select * from admin_perssion where perssion_id in (select perssion_id from perssion_role where role_id = #{roleId});
+    </select>
+</mapper>
